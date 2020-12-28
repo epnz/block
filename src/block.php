@@ -2,10 +2,10 @@
 /* 
  * @Author: 故乡情
  * @Date: 2020-12-28 18:57:11
- * @LastEditTime: 2020-12-28 23:19:32
+ * @LastEditTime: 2020-12-29 00:58:41
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
- * @FilePath: /block/block.php
+ * @FilePath: /block/src/block.php
  * @Copyright © 2020 EPNZ.com
  * @但请保留版权信息
  */

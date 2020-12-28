@@ -13,6 +13,6 @@
         "php": ">=7.1"
     },
     "autoload": {
-        "psr-4": { "epnz\\": "" }
+        "psr-4": { "epnz\\block\\": "src" }
     }
 }
