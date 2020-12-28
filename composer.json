@@ -13,7 +13,6 @@
         "php": ">=7.1"
     },
     "autoload": {
-        "psr-4": { "epnz\\block\\": "" },
-        "files": [ "block.php" ]
+        "psr-4": { "epnz\\": "" }
     }
 }
