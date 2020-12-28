@@ -1,0 +1,12 @@
+{
+    "name": "epnz/block",
+    "description": "EPower Network Zealot Project Block",
+    "license": "Apache-2.0",
+    "homepage": "http://www.epnz.com/",
+    "authors": [
+        {
+            "name": "gxq",
+            "email": "s@epnz.com"
+        }       
+    ]
+}
