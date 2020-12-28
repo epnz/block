@@ -12,15 +12,10 @@
 
 namespace epnz\block;
 
-if (!function_exists('test')) {
-    /**
-     * Test.
-     *
-     * @param mixed $value
-     * @return Collection
-     */
-    function test()
+class block
+{
+    public function test()
     {
-        return '这个 Composer 我还不会，这只是一个测试';
+        echo "这是一个测试，Composer！";
     }
 }
