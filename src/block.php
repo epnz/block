@@ -2,22 +2,22 @@
 /* 
  * @Author: 故乡情
  * @Date: 2020-12-28 18:57:11
- * @LastEditTime: 2020-12-29 15:03:12
+ * @LastEditTime: 2020-12-29 18:01:19
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
- * @FilePath: /block/src/block.php
+ * @FilePath: \block\src\block.php
  * @Copyright © 2020 EPNZ.com
  * 请保留版权信息
  */
 
 namespace epnz;
 
-class block
+class Block
 {
     /**
      * Version
      */
-    const VERSION = '0.0.4';
+    const VERSION = '0.0.5';
 
     protected $lang = 'zh-cn';
 
