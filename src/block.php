@@ -2,12 +2,12 @@
 /* 
  * @Author: 故乡情
  * @Date: 2020-12-28 18:57:11
- * @LastEditTime: 2020-12-29 00:58:41
+ * @LastEditTime: 2020-12-29 15:03:12
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: /block/src/block.php
  * @Copyright © 2020 EPNZ.com
- * @但请保留版权信息
+ * 请保留版权信息
  */
 
 namespace epnz;
@@ -19,80 +19,52 @@ class block
      */
     const VERSION = '0.0.4';
 
-    /**
-     * @description: 生成随机定串
-     * @param   integer $length 生成字串的长度
-     * @return  string
-     */
-    public function randChar($length = 8)
-    {
-        $str = null;
-        $strPol = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz";
-        $max = strlen($strPol) - 1;
-        for ($i = 0; $i < $length; $i++) {
-            $str .= $strPol[mt_rand(0, $max)]; //rand($min,$max)生成介于min和max两个数之间的一个随机整数
-        }
-        return $str;
-    }
+    protected $lang = 'zh-cn';
 
-    /**
-     * @description: 格式化容量
-     * @param   integer $size   原始容量
-     * @param   integer $dec    浮点长度
-     * @return  string
-     */
-    public function byteFormat($size, $dec = 2)
-    {
-        $a = array("B", "KB", "MB", "GB", "TB", "PB");
-        $pos = 0;
-        while ($size >= 1024) {
-            $size /= 1024;
-            $pos++;
-        }
-        return round($size, $dec) . " " . $a[$pos];
-    }
+    public $rootPath;
 
-    /**
-     * @description: CURL in POST
-     * @access  public
-     * @param   string  $url    URL
-     * @param   array   $param  参数
-     * @return  string
-     */
-    public function curlPost($url, $param = null)
+    public $thisPath;
+
+    public $httpCode;
+
+    public $class;
+
+    public function __construct($paths = [])
     {
-        if (is_array($param)) {
-            $param = http_build_query($param);
+        spl_autoload_register(function ($class) {
+            $class = ltrim($class, 'epnz\\');
+            include $class . '.php';
+        });
+        
+        if(empty($paths)){
+            $this->rootPath = dirname(__DIR__);
+            //$this->rootPath = dirname(__DIR__, 4);
+        } else {
+            $this->rootPath = $paths['root'];
         }
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
+        $this->thisPath = __DIR__;
 
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
+        if(isset($paths['config'])){
+            $basic = $paths['config'] . DIRECTORY_SEPARATOR .'basic.php';
+            if(file_exists($basic)){
+                $basic = require_once $basic;
+                $this->lang = $basic['language'];
+            }
+        }
 
-        // 抓取URL并把它传递给浏览器
-        $raw = curl_exec($ch);
+        $blockLanguagePath = $this->thisPath . DIRECTORY_SEPARATOR 
+        . 'language' . DIRECTORY_SEPARATOR . $this->lang . DIRECTORY_SEPARATOR;
 
-        // 关闭cURL资源，并且释放系统资源
-        curl_close($ch);
+        $http = require_once $blockLanguagePath . 'http.php';
 
-        return $raw;
-    }
+        $this->httpCode = $http;
+        $this->class = __CLASS__;
+        
+        // $autoloadFile = ['default'];
 
-    /**
-     * @description: 这是一个 Composer autoload file 测试
-     * @param   string  $str    可以传入一个字符串
-     * @return  string
-     */
-    public function test($str = '')
-    {
-        $str = empty($str) ? "这是一个测试，Composer！" : $str;
-        $str = $str . PHP_EOL;
-        return $str;
+        // foreach ($autoloadFile as $v) {
+        //     require_once $v . '.php';
+        // }
     }
 }
