@@ -7,12 +7,17 @@
         {
             "name": "gxq",
             "email": "s@epnz.com"
-        }       
+        }
     ],
     "require": {
         "php": ">=7.1"
     },
     "autoload": {
-        "psr-4": { "epnz\\block\\": "src" }
+        "psr-4": {
+            "epnz\\block\\": "src"
+        },
+        "files": [
+            "src/Block.php"
+        ]
     }
 }
