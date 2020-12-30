@@ -2,10 +2,10 @@
 /*
  * @Author: 故乡情
  * @Date: 2020-12-29 17:55:15
- * @LastEditTime: 2020-12-29 18:01:48
+ * @LastEditTime: 2020-12-30 16:14:27
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
- * @FilePath: \block\src\Request.php
+ * @FilePath: /block/src/Request.php
  * @Copyright © 2020 EPNZ.com
  * 请保留版权信息
  */
@@ -16,6 +16,12 @@ use epnz\block;
 
 class Request extends Block
 {
+    /**
+     * @description: 实现的方法
+     */
+    protected $methods = [
+        'curlPost'
+    ];
     
     /**
      * @description: CURL in POST

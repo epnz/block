@@ -2,7 +2,7 @@
 /*
  * @Author: 故乡情
  * @Date: 2020-12-29 05:41:58
- * @LastEditTime: 2020-12-30 14:40:33
+ * @LastEditTime: 2020-12-30 16:13:39
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: /block/src/Message.php
@@ -16,6 +16,9 @@ use epnz\Block;
 
 class Message extends Block
 {
+    /**
+     * @description: 实现的方法
+     */
     protected $methods = [
         'test'
     ];

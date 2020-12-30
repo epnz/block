@@ -2,10 +2,10 @@
 /*
  * @Author: 故乡情
  * @Date: 2020-12-29 14:59:57
- * @LastEditTime: 2020-12-29 18:01:27
+ * @LastEditTime: 2020-12-30 16:13:55
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
- * @FilePath: \block\src\Character.php
+ * @FilePath: /block/src/Character.php
  * @Copyright © 2020 EPNZ.com
  * 请保留版权信息
  */
@@ -16,6 +16,13 @@ use epnz\block;
 
 class Character extends Block
 {
+    /**
+     * @description: 实现的方法
+     */
+    protected $methods = [
+        'randChar', 'byteFormat', 'test'
+    ];
+
     /**
      * @description: 生成随机定串
      * @param   integer $length 生成字串的长度
