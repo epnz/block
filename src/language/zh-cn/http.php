@@ -2,7 +2,7 @@
 /*
  * @Author: 故乡情
  * @Date: 2020-12-29 05:12:13
- * @LastEditTime: 2020-12-29 05:28:16
+ * @LastEditTime: 2021-01-01 01:41:20
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: /block/src/language/zh-cn/http.php
@@ -12,13 +12,13 @@
 
 return [
     'code' => [
-        100 => 'Continue',
-        101 => 'Switching Protocols',
-        200 => 'OK',
-        201 => 'Created',
-        201 => 'Accepted',
+        100 => '继续',
+        101 => '交换协议',
+        200 => '就绪',
+        201 => '已创建',
+        202 => '已接受',
         203 => 'Non-Authoritative Information',
-        204 => 'No Content',
+        204 => '无内容',
         205 => 'Reset Content',
         206 => 'Partial Content',
         300 => 'Multiple Choices',
@@ -29,16 +29,16 @@ return [
         305 => 'Use Proxy',
         306 => '(Unused)',
         307 => 'Temporary Redirect',
-        400 => 'Bad Request',
-        401 => 'Unauthorized',
+        400 => '错误请求',
+        401 => '未经授权',
         402 => 'Payment Required',
-        403 => 'Forbidden',
-        404 => 'Not Found',
+        403 => '禁止执行',
+        404 => '未找到',
         405 => 'Method Not Allowed',
         406 => 'Not Acceptable',
         407 => 'Proxy Authentication Required',
-        408 => 'Request Timeout',
-        409 => 'Conflict',
+        408 => '请求超时',
+        409 => '请求冲突',
         410 => 'Gone',
         411 => 'Length Required',
         412 => 'Precondition Failed',
@@ -47,11 +47,11 @@ return [
         415 => 'Unsupported Media Type',
         416 => 'Requested Range Not Satisfiable',
         417 => 'Expectation Failed',
-        500 => 'Internal Server Error',
+        500 => '服务器内部错误',
         501 => 'Not Implemented',
-        502 => 'Bad Gateway',
+        502 => '网关错误',
         503 => 'Service Unavailable',
-        504 => 'Gateway Timeout',
+        504 => '网关超时',
         505 => 'HTTP Version Not Supported',
     ]
 ];

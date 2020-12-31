@@ -2,7 +2,7 @@
 /*
  * @Author: 故乡情
  * @Date: 2020-12-29 17:55:15
- * @LastEditTime: 2020-12-30 16:14:27
+ * @LastEditTime: 2021-01-01 01:49:16
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: /block/src/Request.php
@@ -22,6 +22,11 @@ class Request extends Block
     protected $methods = [
         'curlPost'
     ];
+
+    private $requestMethod = [
+        'GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'CONNECT', 'OPTIONS', 'TRACE'
+    ];
+  
     
     /**
      * @description: CURL in POST

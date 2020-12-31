@@ -2,7 +2,7 @@
 /* 
  * @Author: 故乡情
  * @Date: 2020-12-28 18:57:11
- * @LastEditTime: 2020-12-30 16:09:20
+ * @LastEditTime: 2021-01-01 03:35:05
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: /block/src/block.php
@@ -19,47 +19,41 @@ class Block
      */
     const VERSION = '0.0.7';
 
+    /**
+     * 默认语言
+     */
     protected $lang = 'zh-cn';
 
-    public $rootPath;
+    /**
+     * 打造一个全局能用的基础数组
+     */
+    public $basic;
 
-    public $thisPath;
-
-    public $httpCode;
-
-    public $class;
+    public $startTime;
 
     /**
      * @description:  前置操作
      * @param   array $paths
      * @return  null
      */
-    public function __construct($paths = [])
+    public function __construct($config = [])
     {
-        if (empty($paths)) {
-            $this->rootPath = dirname(__DIR__);
-            //$this->rootPath = dirname(__DIR__, 4);
-        } else {
-            $this->rootPath = $paths['root'];
-        }
+        $this->startTime = microtime(true);
+        $this->basic['path'] = __DIR__;
+        $this->basic['lang'] = $config['language'] ?? $this->lang;
 
-        $this->thisPath = __DIR__;
-
-        if (isset($paths['config'])) {
-            $basic = $paths['config'] . DIRECTORY_SEPARATOR . 'basic.php';
-            if (file_exists($basic)) {
-                $basic = require_once $basic;
-                $this->lang = $basic['language'];
+        if (isset($config['config'])) {
+            $configFile = $config['config'] . DIRECTORY_SEPARATOR . 'basic.php';
+            if (file_exists($configFile)) {
+                $configBasic = require_once $configFile;
+                $this->basic['lang'] = $configBasic['language'] ?? $this->lang;
             }
         }
 
-        $blockLanguagePath = $this->thisPath . DIRECTORY_SEPARATOR
-            . 'language' . DIRECTORY_SEPARATOR . $this->lang . DIRECTORY_SEPARATOR;
+        $blockLanguagePath = $this->basic['path'] . DIRECTORY_SEPARATOR
+            . 'language' . DIRECTORY_SEPARATOR . $this->basic['lang'] . DIRECTORY_SEPARATOR;
 
-        $http = require_once $blockLanguagePath . 'http.php';
-
-        $this->httpCode = $http;
-        $this->class = __CLASS__;
+        $this->basic['http_code'] = include $blockLanguagePath . 'http.php';
     }
 
     /**
@@ -92,4 +86,12 @@ spl_autoload_register(function ($class) {
         exit();
     }
     include_once $file;
+});
+
+register_shutdown_function(function ()
+{
+    $starTime = (new Block)->startTime;
+    $endTime = microtime(true);
+    $executionTime = number_format(($endTime-$starTime), 6, '.', ''). 's';
+    print_r($executionTime);
 });

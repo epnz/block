@@ -2,7 +2,7 @@
 /*
  * @Author: 故乡情
  * @Date: 2020-12-29 01:52:55
- * @LastEditTime: 2020-12-29 05:28:26
+ * @LastEditTime: 2021-01-01 01:38:27
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: /block/src/language/en/http.php
@@ -16,7 +16,7 @@ return [
         101 => 'Switching Protocols',
         200 => 'OK',
         201 => 'Created',
-        201 => 'Accepted',
+        202 => 'Accepted',
         203 => 'Non-Authoritative Information',
         204 => 'No Content',
         205 => 'Reset Content',
