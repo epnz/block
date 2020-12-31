@@ -2,7 +2,7 @@
 /* 
  * @Author: 故乡情
  * @Date: 2020-12-28 18:57:11
- * @LastEditTime: 2021-01-01 03:35:05
+ * @LastEditTime: 2021-01-01 04:01:28
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: /block/src/block.php
@@ -17,7 +17,7 @@ class Block
     /**
      * Version
      */
-    const VERSION = '0.0.7';
+    const VERSION = '0.0.8';
 
     /**
      * 默认语言
