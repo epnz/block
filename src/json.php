@@ -2,7 +2,7 @@
 /*
  * @Author: 故乡情
  * @Date: 2021-01-03 00:26:43
- * @LastEditTime: 2021-01-03 00:46:09
+ * @LastEditTime: 2021-01-03 13:15:13
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: /block/src/json.php
@@ -14,6 +14,13 @@ namespace block;
 
 class json
 {
+    /**
+     * @description: 检查是否为 Json
+     * @param   string  $json   json 字符串
+     * @param   bool    $option 值为 true 时直接全输出数组
+     * @return  mixed   array and bool
+     * @access  public
+     */
     public function isJson($json, $option = false)
     {
         @$toArray = json_decode($json, true);
@@ -23,6 +30,12 @@ class json
         return (json_last_error() == JSON_ERROR_NONE);
     }
 
+    /**
+     * @description: 可能有需要直接输出 Json 的时候
+     * @param   string  $json   Json 字符串
+     * @return  mixed   array and false
+     * @access  public 
+     */
     public function jsonToArray($json)
     {
         return $this->isJson($json, true);
