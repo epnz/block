@@ -2,7 +2,7 @@
 /*
  * @Author: 故乡情
  * @Date: 2020-12-29 05:12:13
- * @LastEditTime: 2021-01-01 01:41:20
+ * @LastEditTime: 2021-01-03 16:51:57
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: /block/src/language/zh-cn/http.php
@@ -53,5 +53,19 @@ return [
         503 => 'Service Unavailable',
         504 => '网关超时',
         505 => 'HTTP Version Not Supported',
+    ],
+    'status' => [
+        [
+            'codes' => [200, 201, 202, 203, 204],
+            'char'   => 'success',
+        ],
+        [
+            'codes' => [100, 101],
+            'char'   => 'continue',
+        ],
+        [
+            'codes' => [],
+            'char'   => 'error',
+        ]
     ]
 ];

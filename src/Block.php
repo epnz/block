@@ -2,7 +2,7 @@
 /* 
  * @Author: 故乡情
  * @Date: 2020-12-28 18:57:11
- * @LastEditTime: 2021-01-03 13:00:01
+ * @LastEditTime: 2021-01-03 22:57:43
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: /block/src/block.php
@@ -17,16 +17,16 @@ class block
     /**
      * Version
      */
-    const VERSION = '0.0.9';
+    const VERSION = '0.0.10';
 
     /**
      * 默认语言
      */
-    private $lang = 'zh-cn';
+    protected $lang = 'zn-cn';
 
-    private $debug = false;
+    protected $debug = false;
 
-    private $startTime;
+    protected $startTime;
 
 
     /**
@@ -34,17 +34,17 @@ class block
      */
     public $basic;
 
-    public static $config;
+    private $langs = ['zh-cn', 'en'];
 
     /**
      * @description:  前置操作
      * @param   array $paths
      * @return  null
      */
-    public function __construct(array $config = [])
+    public function __construct()
     {
         $this->startTime = microtime(true);
-        $this->init($config);
+        $this->init();
     }
 
     // /**
@@ -74,27 +74,32 @@ class block
      * @param   array $config
      * @return  null
      */
-    private function init($config = [])
+    final private function init()
     {
         $this->basic['path']    = __DIR__;
-        $this->basic['lang']    = $config['language'] ?? $this->lang;
         $this->basic['debug']   = $config['debug'] ?? $this->debug;
 
-        if (isset($config['config'])) {
-            $configFile = $config['config'] . DIRECTORY_SEPARATOR . 'basic.php';
-            if (file_exists($configFile)) {
-                $configBasic = require_once $configFile;
-                $this->basic['lang'] = $configBasic['language'] ?? $this->lang;
-            }
-        }
+        // if (isset($config['config'])) {
+        //     $configFile = $config['config'] . DIRECTORY_SEPARATOR . 'basic.php';
+        //     if (file_exists($configFile)) {
+        //         $configBasic = require_once $configFile;
+        //     }
+        // }
+    }
 
+    /**
+     * @description: HTTP Code
+     * @param   string $lang 显示时的语文
+     * @return  array
+     * @access  public
+     */
+    public function getHttpCode($lang)
+    {
+        $lang = in_array($lang, $this->langs) ? $lang : 'zh-cn';
         $blockLanguagePath = $this->basic['path'] . DIRECTORY_SEPARATOR
-            . 'language' . DIRECTORY_SEPARATOR . $this->basic['lang'] . DIRECTORY_SEPARATOR;
-
-        $this->basic['http_code'] = include $blockLanguagePath . 'http.php';
-        if ($this->basic['debug']) {
-            register_shutdown_function([$this, 'rsf']);
-        }
+            . 'language' . DIRECTORY_SEPARATOR . $lang . DIRECTORY_SEPARATOR;
+        $httpCode = include $blockLanguagePath . 'http.php';
+        return $httpCode;
     }
 
     /**
