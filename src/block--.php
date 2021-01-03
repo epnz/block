@@ -2,7 +2,7 @@
 /* 
  * @Author: 故乡情
  * @Date: 2020-12-28 18:57:11
- * @LastEditTime: 2021-01-03 22:57:43
+ * @LastEditTime: 2021-01-03 23:13:26
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: /block/src/block.php
@@ -106,8 +106,8 @@ class block
      * @description: 注册一个 callback ，它会在脚本执行完成或者 exit() 后被调用。
      * @return string
      */
-    public function rsf()
-    {
-        echo number_format((microtime(true) - $this->startTime), 8, '.', '') . 's';
-    }
+    // public function rsf()
+    // {
+    //     echo number_format((microtime(true) - $this->startTime), 8, '.', '') . 's';
+    // }
 }
