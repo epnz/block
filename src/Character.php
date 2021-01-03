@@ -2,19 +2,17 @@
 /*
  * @Author: 故乡情
  * @Date: 2020-12-29 14:59:57
- * @LastEditTime: 2020-12-30 16:13:55
+ * @LastEditTime: 2021-01-02 23:01:44
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
- * @FilePath: /block/src/Character.php
+ * @FilePath: /block/src/character.php
  * @Copyright © 2020 EPNZ.com
  * 请保留版权信息
  */
 
-namespace epnz;
+namespace block;
 
-use epnz\block;
-
-class Character extends Block
+class character
 {
     /**
      * @description: 实现的方法

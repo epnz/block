@@ -2,7 +2,7 @@
 /* 
  * @Author: 故乡情
  * @Date: 2020-12-28 18:57:11
- * @LastEditTime: 2021-01-01 04:01:28
+ * @LastEditTime: 2021-01-03 13:00:01
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: /block/src/block.php
@@ -10,37 +10,75 @@
  * 请保留版权信息
  */
 
-namespace epnz;
+namespace block;
 
-class Block
+class block
 {
     /**
      * Version
      */
-    const VERSION = '0.0.8';
+    const VERSION = '0.0.9';
 
     /**
      * 默认语言
      */
-    protected $lang = 'zh-cn';
+    private $lang = 'zh-cn';
+
+    private $debug = false;
+
+    private $startTime;
+
 
     /**
      * 打造一个全局能用的基础数组
      */
     public $basic;
 
-    public $startTime;
+    public static $config;
 
     /**
      * @description:  前置操作
      * @param   array $paths
      * @return  null
      */
-    public function __construct($config = [])
+    public function __construct(array $config = [])
     {
         $this->startTime = microtime(true);
-        $this->basic['path'] = __DIR__;
-        $this->basic['lang'] = $config['language'] ?? $this->lang;
+        $this->init($config);
+    }
+
+    // /**
+    //  * @description: 实现非静态方法
+    //  * "..."语法实现支持可变数量的参数列表
+    //  */
+    // public function __call($method, $parameters)
+    // {
+    //     if (in_array($method, $this->methods)) {
+    //         return $this->$method(...$parameters);
+    //     }
+    //     return 'No method: ' . $method . PHP_EOL;
+    // }
+
+    // /**
+    //  * @description: 实现静态方法
+    //  */
+    // public static function __callStatic($method, $parameters)
+    // {
+    //     //return call_user_func_array($method, $parameters);
+    //     //return call_user_func_array([static::createFacade(), $method], $parameters);
+    //     (new static)->$method(...$parameters);
+    // }
+
+    /**
+     * @description: 初始化
+     * @param   array $config
+     * @return  null
+     */
+    private function init($config = [])
+    {
+        $this->basic['path']    = __DIR__;
+        $this->basic['lang']    = $config['language'] ?? $this->lang;
+        $this->basic['debug']   = $config['debug'] ?? $this->debug;
 
         if (isset($config['config'])) {
             $configFile = $config['config'] . DIRECTORY_SEPARATOR . 'basic.php';
@@ -54,44 +92,17 @@ class Block
             . 'language' . DIRECTORY_SEPARATOR . $this->basic['lang'] . DIRECTORY_SEPARATOR;
 
         $this->basic['http_code'] = include $blockLanguagePath . 'http.php';
-    }
-
-    /**
-     * @description: 实现非静态方法
-     * "..."语法实现支持可变数量的参数列表
-     */
-    public function __call($method, $parameters)
-    {
-        if (in_array($method, $this->methods)) {
-            return $this->$method(...$parameters);
+        if ($this->basic['debug']) {
+            register_shutdown_function([$this, 'rsf']);
         }
-        return 'No method: ' . $method . PHP_EOL;
     }
 
     /**
-     * @description: 实现静态方法
+     * @description: 注册一个 callback ，它会在脚本执行完成或者 exit() 后被调用。
+     * @return string
      */
-    public static function __callStatic($method, $parameters)
+    public function rsf()
     {
-        return (new static)->$method(...$parameters);
+        echo number_format((microtime(true) - $this->startTime), 8, '.', '') . 's';
     }
 }
-
-// 实现方法和文件的自动加载
-spl_autoload_register(function ($class) {
-    $class = ltrim($class, 'epnz\\');
-    $file = __DIR__ . DIRECTORY_SEPARATOR . $class . '.php';
-    if (!file_exists($file)) {
-        trigger_error('Trigger a fatal error', E_USER_ERROR);
-        exit();
-    }
-    include_once $file;
-});
-
-register_shutdown_function(function ()
-{
-    $starTime = (new Block)->startTime;
-    $endTime = microtime(true);
-    $executionTime = number_format(($endTime-$starTime), 6, '.', ''). 's';
-    print_r($executionTime);
-});

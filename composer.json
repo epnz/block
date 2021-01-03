@@ -5,7 +5,7 @@
     "homepage": "http://www.epnz.com/",
     "authors": [
         {
-            "name": "gxq",
+            "name": "故乡情",
             "email": "s@epnz.com"
         }
     ],
@@ -14,10 +14,10 @@
     },
     "autoload": {
         "psr-4": {
-            "epnz\\block\\": "src"
+            "block\\": "src"
         },
         "files": [
-            "src/Block.php"
+            "bin/function.php"
         ]
     }
 }

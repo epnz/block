@@ -1,3 +1,5 @@
 # Not required
 .vscode
 /test
+/vendor
+/composer.lock

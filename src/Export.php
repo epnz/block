@@ -2,19 +2,17 @@
 /*
  * @Author: 故乡情
  * @Date: 2020-12-31 04:21:42
- * @LastEditTime: 2020-12-31 04:27:30
+ * @LastEditTime: 2021-01-02 23:02:17
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
- * @FilePath: /block/src/Export.php
+ * @FilePath: /block/src/export.php
  * @Copyright © 2020 EPNZ.com
  * 请保留版权信息
  */
 
-namespace epnz;
+namespace block;
 
-use epnz\Block;
-
-class Export extends Block
+class export
 {
     /**
      * @description: 实现的方法
@@ -22,9 +20,9 @@ class Export extends Block
     protected $methods = [
         'test'
     ];
-    
+
     protected function test()
     {
-        echo 'EXPORT';
+        echo 'EXPORT' . PHP_EOL;
     }
 }
