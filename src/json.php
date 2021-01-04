@@ -2,7 +2,7 @@
 /*
  * @Author: 故乡情
  * @Date: 2021-01-03 00:26:43
- * @LastEditTime: 2021-01-03 22:53:50
+ * @LastEditTime: 2021-01-04 17:39:23
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: /block/src/json.php
@@ -31,7 +31,7 @@ class json
     public function isJson($json, $option = false)
     {
         @$toArray = json_decode($json, true);
-        if(json_last_error() == JSON_ERROR_NONE && $option){
+        if (json_last_error() == JSON_ERROR_NONE && $option) {
             return $toArray;
         }
         return (json_last_error() == JSON_ERROR_NONE);
@@ -55,7 +55,8 @@ class json
      * @return  string  Json
      * @access  public
      */
-    public function arrayToJson($arr){
-        return is_array($arr) ? json_encode($arr) : false;
+    public function arrayToJson($arr)
+    {
+        return is_array($arr) ? json_encode($arr, JSON_UNESCAPED_UNICODE) : false;
     }
 }

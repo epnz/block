@@ -2,7 +2,7 @@
 /* 
  * @Author: 故乡情
  * @Date: 2020-12-28 18:57:11
- * @LastEditTime: 2021-01-03 23:18:11
+ * @LastEditTime: 2021-01-05 02:34:02
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: /block/src/block.php
@@ -17,22 +17,24 @@ class block
     /**
      * Version
      */
-    const VERSION = '0.0.10';
+    const VERSION = '0.0.11';
+
+    /**
+     * 打造一个全局能用的基础数组
+     */
+    public $basic;
 
     /**
      * 默认语言
      */
     protected $lang = 'zn-cn';
 
+    protected $timezone = 'Asia/Shanghai';
+
     protected $debug = false;
 
     protected $startTime;
 
-
-    /**
-     * 打造一个全局能用的基础数组
-     */
-    public $basic;
 
     private $langs = ['zh-cn', 'en'];
 
@@ -43,6 +45,7 @@ class block
      */
     public function __construct()
     {
+        date_default_timezone_set($this->timezone);
         $this->startTime = microtime(true);
         $this->init();
     }
@@ -78,6 +81,7 @@ class block
     {
         $this->basic['path']    = __DIR__;
         $this->basic['debug']   = $config['debug'] ?? $this->debug;
+        $this->lang = in_array($this->lang, $this->langs) ? $this->lang : 'zh-cn';
 
         // if (isset($config['config'])) {
         //     $configFile = $config['config'] . DIRECTORY_SEPARATOR . 'basic.php';
@@ -93,13 +97,26 @@ class block
      * @return  array
      * @access  public
      */
-    public function getHttpCode($lang)
+    public function getHttpCode()
     {
-        $lang = in_array($lang, $this->langs) ? $lang : 'zh-cn';
         $blockLanguagePath = $this->basic['path'] . DIRECTORY_SEPARATOR
-            . 'language' . DIRECTORY_SEPARATOR . $lang . DIRECTORY_SEPARATOR;
+            . 'language' . DIRECTORY_SEPARATOR . $this->lang . DIRECTORY_SEPARATOR;
         $httpCode = include $blockLanguagePath . 'http.php';
         return $httpCode;
+    }
+
+    /**
+     * @description: 获取语言
+     * @param   string  $file   语言文件名，不要加后缀
+     * @return  array
+     * @access  public
+     */
+    public function getLang($file)
+    {
+        $blockLanguagePath = $this->basic['path'] . DIRECTORY_SEPARATOR
+            . 'language' . DIRECTORY_SEPARATOR . $this->lang . DIRECTORY_SEPARATOR;
+        $languages = include $blockLanguagePath . $file . '.php';
+        return $languages;
     }
 
     /**

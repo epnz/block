@@ -2,7 +2,7 @@
 /*
  * @Author: 故乡情
  * @Date: 2020-12-29 05:41:58
- * @LastEditTime: 2021-01-03 22:02:06
+ * @LastEditTime: 2021-01-05 02:16:55
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: /block/src/message.php
@@ -38,12 +38,10 @@ class message extends block
      */
     public function outPut($param = [], $data = [])
     {
-        $lang = $this->lang;
-
         if (is_int($param)) {
             $code  = $param;
         } elseif (is_string($param)) {
-            $msg = is_string($param);
+            $msg = $param;
         } else {
             $toArray = (new json)->jsonToArray($param);
             $param = is_array($toArray) ? $toArray : $param;
@@ -51,7 +49,7 @@ class message extends block
             $msg = isset($param['msg']) ? $param['msg'] : null;
         }
 
-        $httpCode = $this->getHttpCode($lang);
+        $httpCode = $this->getHttpCode();
 
         if (!empty($msg)) {
             $code = $code ?? 200;
@@ -63,7 +61,7 @@ class message extends block
                 $code = 400;
             }
             if (!$msg) {
-                $msg = $lang == 'zh-cn' ? '未知错误' : 'unknown';
+                $msg = $this->lang == 'zh-cn' ? '未知错误' : 'unknown';
             }
         }
 

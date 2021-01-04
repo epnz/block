@@ -18,65 +18,53 @@ require __DIR__ . '/vendor/autoload.php';
 
 ## 模块
 
-<div style="margin-left: 20px;">
-
 ### 文字 `'character'`
 
-<div style="margin-left: 20px;">
+#### - randChar
 
-#### - **randChar** 得到随机字符串
+得到随机字符串
 
-#### - **byteFormat** 格式化容量
+#### - byteFormat
 
-</div>
+格式化容量
 
------------------------
+### 时间 `'date'`
+
+#### - timeComparison
+
+输入一个时间戳，输出与当前时间的比较
 
 ### 输出 `'export'`
 
-<div style="margin-left: 20px;">
+#### - json
 
-#### - **json** 输出 Json HTTP 页面
-
-</div>
-
------------------------
+输出 Json HTTP 页面
 
 ### Json `'json'`
 
-<div style="margin-left: 20px;">
+#### - isJson
 
-#### - **isJson** 判断是否为 Json
+判断是否为 Json
 
-#### - **jsonToArray** Json 转数组
+#### - jsonToArray
 
-#### - **arrayToJson**  数组转 Json
+Json 转数组
 
-</div>
+#### - arrayToJson
 
------------------------
+数组转 Json
 
 ### 消息 `'message'`
 
-<div style="margin-left: 20px;">
+#### - outPut
 
-#### - **outPut** 组装消息数组
-
-</div>
-
------------------------
+组装消息数组
 
 ### 请求 `'request'` 
 
-<div style="margin-left: 20px;">
+#### - curlPost
 
-#### - **curlPost** Curl 的 Post 请求
-
-</div>
-
------------------------
-
-</div>
+Curl 的 Post 请求
 
 ## 标准 / 规范
 
