@@ -66,11 +66,6 @@ Json 转数组
 
 Curl 的 Post 请求
 
-## 标准 / 规范
-
-[HTTP 响应代码](https://tools.ietf.org/html/rfc2616)  |
-[PHP 标准规范(PSR 中文翻译)](https://www.bookstack.cn/read/PSR%20%e4%b8%ad%e6%96%87%e7%bf%bb%e8%af%91/README.md) . [更多PHP标准规范](https://www.php-fig.org/psr/)
-
 ## 版权信息
 
  * 你可以免费使用源码，或用于二次开发，但请保留版权信息
