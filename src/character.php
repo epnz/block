@@ -2,7 +2,7 @@
 /*
  * @Author: 故乡情
  * @Date: 2020-12-29 14:59:57
- * @LastEditTime: 2021-01-02 23:01:44
+ * @LastEditTime: 2021-01-05 12:00:08
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: /block/src/character.php
@@ -18,7 +18,7 @@ class character
      * @description: 实现的方法
      */
     protected $methods = [
-        'randChar', 'byteFormat', 'test'
+        'randChar', 'byteFormat'
     ];
 
     /**
@@ -52,17 +52,5 @@ class character
             $pos++;
         }
         return round($size, $dec) . " " . $a[$pos];
-    }
-
-    /**
-     * @description: 这是一个 Composer autoload file 测试
-     * @param   string  $str    可以传入一个字符串
-     * @return  string
-     */
-    public function test($str = '')
-    {
-        $str = empty($str) ? "这是一个测试，Composer！" : $str;
-        $str = $str . PHP_EOL;
-        return $str;
     }
 }

@@ -3,9 +3,12 @@
     "description": "EPower Network Zealot Project Block",
     "license": "Apache-2.0",
     "homepage": "http://www.epnz.com/",
+    "keywords": [
+        "block"
+    ],
     "authors": [
         {
-            "name": "故乡情",
+            "name": "GXQ",
             "email": "s@epnz.com"
         }
     ],

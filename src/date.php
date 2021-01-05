@@ -2,7 +2,7 @@
 /*
  * @Author: 故乡情
  * @Date: 2021-01-04 17:12:59
- * @LastEditTime: 2021-01-05 02:23:25
+ * @LastEditTime: 2021-01-05 19:40:50
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: /block/src/date.php
@@ -48,7 +48,7 @@ class date extends block
         $thisYear = strtotime(date('Y-01-01'));
         if ((time() - $time) < 60) {
             $str = $lang['Just now'];
-        } elseif ($time > $thisHour) {
+        } elseif ($time > time()-3600) {
             $str = intval((time() - $time) / 60) . $lang['minutes ago'];
         } elseif ($time > $todayTime) {
             $str = intval((time() - $time) / 3600) . $lang['hours ago'];

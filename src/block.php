@@ -2,7 +2,7 @@
 /* 
  * @Author: 故乡情
  * @Date: 2020-12-28 18:57:11
- * @LastEditTime: 2021-01-05 02:34:02
+ * @LastEditTime: 2021-01-05 14:51:00
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: /block/src/block.php
@@ -27,7 +27,7 @@ class block
     /**
      * 默认语言
      */
-    protected $lang = 'zn-cn';
+    public $lang = 'zn-cn';
 
     protected $timezone = 'Asia/Shanghai';
 
@@ -45,8 +45,8 @@ class block
      */
     public function __construct()
     {
-        date_default_timezone_set($this->timezone);
         $this->startTime = microtime(true);
+        date_default_timezone_set($this->timezone);
         $this->init();
     }
 
@@ -82,13 +82,6 @@ class block
         $this->basic['path']    = __DIR__;
         $this->basic['debug']   = $config['debug'] ?? $this->debug;
         $this->lang = in_array($this->lang, $this->langs) ? $this->lang : 'zh-cn';
-
-        // if (isset($config['config'])) {
-        //     $configFile = $config['config'] . DIRECTORY_SEPARATOR . 'basic.php';
-        //     if (file_exists($configFile)) {
-        //         $configBasic = require_once $configFile;
-        //     }
-        // }
     }
 
     /**
