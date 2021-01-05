@@ -70,5 +70,3 @@ Curl 的 Post 请求
 
  * 你可以免费使用源码，或用于二次开发，但请保留版权信息
  * 更多细节参阅 [LICENSE](LICENSE)
-
-Copyright &copy; 2018-2021 [EPNZ.com](http://www.epnz.com) EPower Network Zealot
