@@ -2,7 +2,7 @@
 /*
  * @Author: 故乡情
  * @Date: 2021-01-02 23:25:13
- * @LastEditTime: 2021-01-03 00:47:20
+ * @LastEditTime: 2021-01-06 21:47:10
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: /block/bin/function.php
@@ -10,9 +10,13 @@
  * 请保留版权信息
  */
 
-if (!function_exists('function_name')) {
-    function function_name()
+use block\func;
+
+if (!function_exists('block')) {
+    function block()
     {
-        return 'Function test';
+        $func = new func();
+        return $func;
     }
 }
+

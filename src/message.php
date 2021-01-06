@@ -2,7 +2,7 @@
 /*
  * @Author: 故乡情
  * @Date: 2020-12-29 05:41:58
- * @LastEditTime: 2021-01-05 02:16:55
+ * @LastEditTime: 2021-01-06 14:16:02
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: /block/src/message.php
@@ -38,55 +38,58 @@ class message extends block
      */
     public function outPut($param = [], $data = [])
     {
-        if (is_int($param)) {
+        $Json = new json();
+
+        if (empty($param)) {
+            $code = 200;
+            $msg = null;
+        } elseif (is_int($param)) {
             $code  = $param;
+            $msg = null;
+        } elseif ($Json->isJson($param)) {
+            $param = $Json->jsonToArray($param);
+            $code = $param['code'] ?? 200;
+            $msg = $param['msg'] ?? null;
+            $data = $param['data'] ?? [];
         } elseif (is_string($param)) {
             $msg = $param;
+            $code = 200;
+        } elseif (is_array($param)) {
+            $code = $param['code'] ?? 200;
+            $msg = $param['msg'] ?? null;
+            $data = $param['data'] ?? [];
         } else {
-            $toArray = (new json)->jsonToArray($param);
-            $param = is_array($toArray) ? $toArray : $param;
-            $code = isset($param['code']) ? $param['code'] : 400;
-            $msg = isset($param['msg']) ? $param['msg'] : null;
+            $param = null;
+            $code = 200;
+            $msg = null;
         }
 
         $httpCode = $this->getHttpCode();
 
-        if (!empty($msg)) {
-            $code = $code ?? 200;
+        if (isset($httpCode['code'][$code])) {
+            $msg = $msg ?: $httpCode['code'][$code];
         } else {
-            if (isset($httpCode['code'][$code])) {
-                $msg = $httpCode['code'][$code];
-            } else {
-                $msg = null;
-                $code = 400;
-            }
-            if (!$msg) {
-                $msg = $this->lang == 'zh-cn' ? '未知错误' : 'unknown';
-            }
+            $code = 400;
+            $msg = $this->lang == 'zh-cn' ? '未知错误' : 'unknown';
         }
 
         foreach ($httpCode['status'] as $k => $v) {
             if (in_array($code, $v['codes'])) {
                 $status =  $v['char'];
                 break;
-            } else {
-                $status = $httpCode['status'][2]['char'];
             }
         }
+
+        $status = $status ?? $httpCode['status'][2]['char'];
 
         $arr = [
             'code'      => $code,
             'status'    => $status,
-            'msg'       => $msg ? $msg : $httpCode['code'][$code]
+            'msg'       => $msg
         ];
         if (!empty($data)) {
             $arr['data'] = $data;
         }
         return $arr;
-    }
-
-    public function test()
-    {
-        return 'message test';
     }
 }

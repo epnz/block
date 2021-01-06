@@ -2,7 +2,7 @@
 /*
  * @Author: 故乡情
  * @Date: 2021-01-03 00:26:43
- * @LastEditTime: 2021-01-04 17:39:23
+ * @LastEditTime: 2021-01-06 14:06:38
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: /block/src/json.php
@@ -30,7 +30,8 @@ class json
      */
     public function isJson($json, $option = false)
     {
-        @$toArray = json_decode($json, true);
+        if(!is_string($json) || empty($json)) return false;
+        $toArray = json_decode($json, true);
         if (json_last_error() == JSON_ERROR_NONE && $option) {
             return $toArray;
         }

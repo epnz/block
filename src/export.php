@@ -2,7 +2,7 @@
 /*
  * @Author: 故乡情
  * @Date: 2020-12-31 04:21:42
- * @LastEditTime: 2021-01-03 22:54:14
+ * @LastEditTime: 2021-01-06 22:23:01
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: /block/src/export.php
@@ -52,10 +52,5 @@ class export extends block
         Header('HTTP/1.1 ' . $headerHTTP);
         
         echo $json->arrayToJson($param);
-    }
-
-    protected function test()
-    {
-        echo 'EXPORT' . PHP_EOL;
     }
 }
