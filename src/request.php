@@ -1,8 +1,8 @@
-<?
+<?php
 /*
  * @Author: 故乡情
  * @Date: 2020-12-29 17:55:15
- * @LastEditTime: 2021-01-05 03:56:07
+ * @LastEditTime: 2021-01-07 16:35:35
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: /block/src/request.php
@@ -24,8 +24,7 @@ class request
     private $requestMethod = [
         'GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'CONNECT', 'OPTIONS', 'TRACE'
     ];
-  
-    
+
     /**
      * @description: CURL in POST
      * @access  public
@@ -56,5 +55,60 @@ class request
         curl_close($ch);
 
         return $raw;
+    }
+
+    /**
+     * @description: PHP $_SERVER
+     * @param   string  $param  $_SERVER的参数
+     * @return  array   如果加参数，输出相应字串
+     * @access  public
+     */
+    public function server($param = '')
+    {
+        return $param ? $_SERVER[$param] ?? false : $_SERVER;
+    }
+
+    /**
+     * @description: 获取COOKIE
+     * @return  array
+     * @access  public
+     */
+    public function cookie()
+    {
+        return $_COOKIE ?? null;
+    }
+
+    /**
+     * @description: 获取SESSION
+     * @return  array
+     * @access  public
+     */
+    public function session()
+    {
+        return $_SESSION ?? null;
+    }
+
+    /**
+     * @description: 获取客户端真实IP
+     * @return  string  IP
+     * @access  public
+     */
+    public function ip()
+    {
+        if ($this->server('HTTP_CLIENT_IP')) {
+            $ip = $this->server('HTTP_CLIENT_IP');
+        }
+        if ($this->server('HTTP_X_REAL_IP')) {
+            $ip = $this->server('HTTP_X_REAL_IP');
+        } elseif ($this->server('HTTP_X_FORWARDED_FOR')) {
+            $ip = $this->server('HTTP_X_FORWARDED_FOR');
+            $ips = explode(',', $ip);
+            $ip = $ips[0];
+        } elseif ($this->server('REMOTE_ADDR')) {
+            $ip = $this->server('REMOTE_ADDR');
+        } else {
+            $ip = $ip ?? '0.0.0.0';
+        }
+        return $ip;
     }
 }
