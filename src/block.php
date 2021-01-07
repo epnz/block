@@ -2,7 +2,7 @@
 /* 
  * @Author: 故乡情
  * @Date: 2020-12-28 18:57:11
- * @LastEditTime: 2021-01-06 23:31:51
+ * @LastEditTime: 2021-01-07 16:38:48
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: /block/src/block.php
@@ -17,7 +17,7 @@ class block
     /**
      * Version
      */
-    const VERSION = '0.0.13';
+    const VERSION = '0.0.14';
 
     /**
      * 打造一个全局能用的基础数组
