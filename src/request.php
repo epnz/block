@@ -2,7 +2,7 @@
 /*
  * @Author: 故乡情
  * @Date: 2020-12-29 17:55:15
- * @LastEditTime: 2021-04-24 12:48:34
+ * @LastEditTime: 2021-04-24 17:36:25
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: /block/src/request.php
@@ -87,9 +87,9 @@ class request
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
 
-        //设置获取的信息以文件流的形式返回，而不是直接输出。
+        // 设置获取的信息以文件流的形式返回，而不是直接输出。
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        //设置头文件的信息作为数据流输出
+        // 设置头文件的信息作为数据流输出
         curl_setopt($ch, CURLOPT_HEADER, 0);
         // 超时设置,以秒为单位
         curl_setopt($ch, CURLOPT_TIMEOUT, 10);
@@ -167,27 +167,59 @@ class request
         return $ip;
     }
 
-    public function os($str)
+    /**
+     * @description: 判断浏览器代理类型
+     * @param   string $str
+     * @return  string
+     * @access  public
+     */
+    public function agentOs($str)
     {
-        $oss = ['Windows', 'Macintosh', 'iPhone', 'Android', 'Linux'];
+        $oss = ['Windows', 'Macintosh', 'iPhone', 'Android', 'Linux', 'X11'];
         $spider = [
             'Baiduspider', 'Googlebot', '360Spider', 'Sosospider', 'Yahoo! Slurp China', 'Yahoo!',
             'YoudaoBot', 'YodaoBot', 'Sogou News Spider', 'msnbot', 'msnbot-media', 'bingbot', 'YisouSpider',
             'ia_archiver', 'EasouSpider', 'JikeSpider', 'EtaoSpider', 'YandexBot', 'AhrefsBot', 'ezooms.bot'
         ];
 
-        foreach($oss AS $v){
-            if(stripos($str, $v) !== false){
+        foreach ($oss as $v) {
+            if($v == 'X11') {
+                return 'UNIX';
+            }
+            if (stripos($str, $v) !== false) {
                 return $v;
             }
         }
 
-        foreach($spider AS $v){
-            if(stripos($str, $v) !== false){
+        foreach ($spider as $v) {
+            if (stripos($str, $v) !== false) {
                 return 'Spider';
             }
         }
-        
+
         return 'unknown';
+    }
+
+    /**
+     * @description: 判断浏览器代理端tkwt系统及版本（版本混乱，放弃更新）
+     * @param   string $os
+     * @param   string $agent
+     * @return  string
+     * @access  public
+     */
+    public function agentOsVersion($os, $agent)
+    {
+        if ($os == 'unknown' || $os == 'Spider') {
+            return 'unknown';
+        }
+
+        if ($os == 'Windows') {
+            if (stripos($agent, 'Windows NT 10.0') !== false) {
+                return 'Windows 10';
+            }
+            if (stripos($agent, 'Windows NT 6.2') !== false) {
+                return 'Windows 8';
+            }
+        }
     }
 }
