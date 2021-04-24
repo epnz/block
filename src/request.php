@@ -2,7 +2,7 @@
 /*
  * @Author: 故乡情
  * @Date: 2020-12-29 17:55:15
- * @LastEditTime: 2021-04-24 17:36:25
+ * @LastEditTime: 2021-04-25 03:12:28
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: /block/src/request.php
@@ -175,7 +175,7 @@ class request
      */
     public function agentOs($str)
     {
-        $oss = ['Windows', 'Macintosh', 'iPhone', 'Android', 'Linux', 'X11'];
+        $oss = ['Windows', 'Macintosh', 'iPhone', 'Android', 'X11', 'Linux'];
         $spider = [
             'Baiduspider', 'Googlebot', '360Spider', 'Sosospider', 'Yahoo! Slurp China', 'Yahoo!',
             'YoudaoBot', 'YodaoBot', 'Sogou News Spider', 'msnbot', 'msnbot-media', 'bingbot', 'YisouSpider',
@@ -183,10 +183,10 @@ class request
         ];
 
         foreach ($oss as $v) {
-            if($v == 'X11') {
-                return 'UNIX';
-            }
             if (stripos($str, $v) !== false) {
+                if ($v == 'X11') {
+                    return 'UNIX';
+                }
                 return $v;
             }
         }
