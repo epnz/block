@@ -2,7 +2,7 @@
 /*
  * @Author: 故乡情
  * @Date: 2020-12-29 17:55:15
- * @LastEditTime: 2021-03-12 00:00:07
+ * @LastEditTime: 2021-04-24 12:48:34
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: /block/src/request.php
@@ -18,7 +18,7 @@ class request
      * @description: 实现的方法
      */
     protected $methods = [
-        'curlPost', 'curlGet', 'server', 'cookie', 'session', 'ip'
+        'curlPost', 'curlGet', 'server', 'cookie', 'session', 'ip', 'os'
     ];
 
     private $requestMethod = [
@@ -165,5 +165,29 @@ class request
             $ip = $ip ?? '0.0.0.0';
         }
         return $ip;
+    }
+
+    public function os($str)
+    {
+        $oss = ['Windows', 'Macintosh', 'iPhone', 'Android', 'Linux'];
+        $spider = [
+            'Baiduspider', 'Googlebot', '360Spider', 'Sosospider', 'Yahoo! Slurp China', 'Yahoo!',
+            'YoudaoBot', 'YodaoBot', 'Sogou News Spider', 'msnbot', 'msnbot-media', 'bingbot', 'YisouSpider',
+            'ia_archiver', 'EasouSpider', 'JikeSpider', 'EtaoSpider', 'YandexBot', 'AhrefsBot', 'ezooms.bot'
+        ];
+
+        foreach($oss AS $v){
+            if(stripos($str, $v) !== false){
+                return $v;
+            }
+        }
+
+        foreach($spider AS $v){
+            if(stripos($str, $v) !== false){
+                return 'Spider';
+            }
+        }
+        
+        return 'unknown';
     }
 }
