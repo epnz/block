@@ -16,8 +16,109 @@ composer require epnz/block
 require __DIR__ . '/vendor/autoload.php'; 
 
 // 请求端IP
+// 以下与block()->request()->ip()；是等效的，request() 是为了方便以后若有需要，可以传入参数
 block()->request->ip()；
 
+~~~
+
+## 模块
+
+### 文字 `'character'`
+
+#### - **randChar** 得到随机字符串
+
+~~~ php
+block()->request->randChar($length)；
+~~~
+
+#### - **byteFormat** 格式化容量
+
+~~~ php
+block()->request->byteFormat($size, $dec)；
+~~~
+
+### 日期 / 时间 `'date'`
+
+#### - **timeComparison** 一个时间戳与当前时间的比较
+
+~~~ php
+block()->request->timeComparison($time, $form)；
+~~~
+
+### 判断 `'datermine'`
+
+#### - **isMobile** 是否手机访问
+
+~~~ php
+block()->request->isMobil()；
+~~~
+
+### 输出 `'export'`
+
+#### - **json** 输出 Json HTTP 页面
+
+~~~ php
+block()->request->json($param, $code)；
+~~~
+
+### Json `'json'`
+
+#### - **isJson** 判断是否为 Json
+
+~~~ php
+block()->request->isJson($json, $option)；
+~~~
+
+#### - **jsonToArray** Json 转数组
+
+~~~ php
+block()->request->jsonToArray($json)；
+~~~
+
+#### - **arrayToJson**  数组转 Json
+
+~~~ php
+block()->request->arrayToJson($arr)；
+~~~
+
+### 消息 `'message'`
+
+#### - **outPut** 组装消息数组
+
+~~~ php
+block()->request->outPut($param, $data)；
+~~~
+
+### 请求 `'request'` 
+
+#### - **curlPost** Curl 的 Post 请求
+
+~~~ php
+block()->request->curlPost($url, $param)；
+~~~
+
+#### - **curlGet** Curl 的 Get 请求
+
+~~~ php
+block()->request->curlGet($url, $param)；
+~~~
+
+#### - **server** $_SERVER 信息优化
+
+~~~ php
+block()->request->server($param)；
+~~~
+
+#### - **ip** 获取客户端真实IP
+
+~~~ php
+block()->request->ip()；
+~~~
+
+#### - **agentOs** 判断浏览器代理类型
+
+~~~ php
+block()->request->iagentOs($str)；
 ~~~
 
 ## 标准 / 规范

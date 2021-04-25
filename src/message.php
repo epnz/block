@@ -2,7 +2,7 @@
 /*
  * @Author: 故乡情
  * @Date: 2020-12-29 05:41:58
- * @LastEditTime: 2021-01-06 14:16:02
+ * @LastEditTime: 2021-04-25 17:20:22
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: /block/src/message.php
@@ -20,7 +20,7 @@ class message extends block
      * @description: 实现的方法
      */
     protected $methods = [
-        'outPut', 'test'
+        'outPut'
     ];
 
     /**
@@ -50,14 +50,16 @@ class message extends block
             $param = $Json->jsonToArray($param);
             $code = $param['code'] ?? 200;
             $msg = $param['msg'] ?? null;
-            $data = $param['data'] ?? [];
+            $param['data'] = $param['data'] ?? [];
+            $data = $data ?: $param['data'];
         } elseif (is_string($param)) {
             $msg = $param;
             $code = 200;
         } elseif (is_array($param)) {
             $code = $param['code'] ?? 200;
             $msg = $param['msg'] ?? null;
-            $data = $param['data'] ?? [];
+            $param['data'] = $param['data'] ?? [];
+            $data = $data ?: $param['data'];
         } else {
             $param = null;
             $code = 200;
