@@ -2,7 +2,7 @@
 /*
  * @Author: 故乡情
  * @Date: 2020-12-29 17:55:15
- * @LastEditTime: 2021-04-25 03:12:28
+ * @LastEditTime: 2021-05-04 12:40:26
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: /block/src/request.php
@@ -179,8 +179,10 @@ class request
         $spider = [
             'Baiduspider', 'Googlebot', '360Spider', 'Sosospider', 'Yahoo! Slurp China', 'Yahoo!',
             'YoudaoBot', 'YodaoBot', 'Sogou News Spider', 'msnbot', 'msnbot-media', 'bingbot', 'YisouSpider',
-            'ia_archiver', 'EasouSpider', 'JikeSpider', 'EtaoSpider', 'YandexBot', 'AhrefsBot', 'ezooms.bot'
+            'ia_archiver', 'EasouSpider', 'JikeSpider', 'EtaoSpider', 'YandexBot', 'AhrefsBot', 'ezooms.bot',
+            'GRequests', 'python-requests', 'NetcraftSurveyAgent'
         ];
+        $framework = ['okhttp'];
 
         foreach ($oss as $v) {
             if (stripos($str, $v) !== false) {
@@ -194,6 +196,12 @@ class request
         foreach ($spider as $v) {
             if (stripos($str, $v) !== false) {
                 return 'Spider';
+            }
+        }
+
+        foreach ($framework as $v) {
+            if (stripos($str, $v) !== false) {
+                return 'Framework';
             }
         }
 
