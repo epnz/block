@@ -2,17 +2,19 @@
 /*
  * @Author: 故乡情
  * @Date: 2020-12-29 17:55:15
- * @LastEditTime: 2021-05-04 12:40:26
+ * @LastEditTime: 2021-06-24 00:53:42
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
- * @FilePath: /block/src/request.php
+ * @FilePath: \block\src\request.php
  * @Copyright © 2020 EPNZ.com
  * 请保留版权信息
  */
 
 namespace block;
 
-class request
+use block\block;
+
+class request extends block
 {
     /**
      * @description: 实现的方法
@@ -32,21 +34,49 @@ class request
      * @param   array   $param  参数
      * @return  string
      */
-    public function curlPost($url, $param = null)
+    public function curlPost($url, $param = null, $cookieFile = '', $http = false)
     {
         if (is_array($param)) {
             $param = http_build_query($param);
         }
 
+        if ($http) {
+            //构造随机ip
+            $ip_long = array(
+                array('607649792', '608174079'), //36.56.0.0-36.63.255.255
+                array('1038614528', '1039007743'), //61.232.0.0-61.237.255.255
+                array('1783627776', '1784676351'), //106.80.0.0-106.95.255.255
+                array('2035023872', '2035154943'), //121.76.0.0-121.77.255.255
+                array('2078801920', '2079064063'), //123.232.0.0-123.235.255.255
+                array('-1950089216', '-1948778497'), //139.196.0.0-139.215.255.255
+                array('-1425539072', '-1425014785'), //171.8.0.0-171.15.255.255
+                array('-1236271104', '-1235419137'), //182.80.0.0-182.92.255.255
+                array('-770113536', '-768606209'), //210.25.0.0-210.47.255.255
+                array('-569376768', '-564133889'), //222.16.0.0-222.95.255.255
+            );
+            $rand_key = mt_rand(0, 9);
+            //模拟http请求header头
+            $ip = long2ip(mt_rand($ip_long[$rand_key][0], $ip_long[$rand_key][1]));
+            $header = array("Connection: Keep-Alive", "Accept: text/html, application/xhtml+xml, */*", "Pragma: no-cache", "Accept-Language: zh-Hans-CN,zh-Hans;q=0.8,en-US;q=0.5,en;q=0.3", "User-Agent: Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)", 'CLIENT-IP:' . $ip, 'X-FORWARDED-FOR:' . $ip);
+        }
+
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
-
+        if ($http) {
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+        }
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_TIMEOUT, 10);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
+        if ($cookieFile) {
+            $file = new file();
+            $file->creatDir(dirname($cookieFile));
+            curl_setopt($ch, CURLOPT_COOKIEFILE, $cookieFile); //存储cookies
+            curl_setopt($ch, CURLOPT_COOKIEJAR, $cookieFile);
+        }
 
         // 抓取URL并把它传递给浏览器
         $raw = curl_exec($ch);
@@ -64,7 +94,7 @@ class request
      * @param   array   $param  参数
      * @return  string
      */
-    public function curlGet($url, $param = null)
+    public function curlGet($url, $param = null, $cookieFile = '')
     {
         if (is_array($param)) {
             $param = http_build_query($param);
@@ -98,6 +128,12 @@ class request
         curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        if ($cookieFile) {
+            $file = new file();
+            $file->creatDir(dirname($cookieFile));
+            curl_setopt($ch, CURLOPT_COOKIEFILE, $cookieFile); //存储cookies
+            curl_setopt($ch, CURLOPT_COOKIEJAR, $cookieFile);
+        }
 
         // 抓取URL并把它传递给浏览器
         $raw = curl_exec($ch);
