@@ -28,13 +28,13 @@ block()->request->ip()；
 #### - **randChar** 得到随机字符串
 
 ~~~ php
-block()->request->randChar($length)；
+block()->character->randChar($length)；
 ~~~
 
 #### - **byteFormat** 格式化容量
 
 ~~~ php
-block()->request->byteFormat($size, $dec)；
+block()->character->byteFormat($size, $dec)；
 ~~~
 
 ### 日期 / 时间 `'date'`
@@ -42,7 +42,7 @@ block()->request->byteFormat($size, $dec)；
 #### - **timeComparison** 一个时间戳与当前时间的比较
 
 ~~~ php
-block()->request->timeComparison($time, $form)；
+block()->date->timeComparison($time, $form)；
 ~~~
 
 ### 判断 `'datermine'`
@@ -50,7 +50,7 @@ block()->request->timeComparison($time, $form)；
 #### - **isMobile** 是否手机访问
 
 ~~~ php
-block()->request->isMobil()；
+block()->datermine->isMobil()；
 ~~~
 
 ### 输出 `'export'`
@@ -58,7 +58,7 @@ block()->request->isMobil()；
 #### - **json** 输出 Json HTTP 页面
 
 ~~~ php
-block()->request->json($param, $code)；
+block()->export->json($param, $code)；
 ~~~
 
 ### Json `'json'`
@@ -66,19 +66,19 @@ block()->request->json($param, $code)；
 #### - **isJson** 判断是否为 Json
 
 ~~~ php
-block()->request->isJson($json, $option)；
+block()->json->isJson($json, $option)；
 ~~~
 
 #### - **jsonToArray** Json 转数组
 
 ~~~ php
-block()->request->jsonToArray($json)；
+block()->json->jsonToArray($json)；
 ~~~
 
 #### - **arrayToJson**  数组转 Json
 
 ~~~ php
-block()->request->arrayToJson($arr)；
+block()->json->arrayToJson($arr)；
 ~~~
 
 ### 消息 `'message'`
@@ -86,7 +86,7 @@ block()->request->arrayToJson($arr)；
 #### - **outPut** 组装消息数组
 
 ~~~ php
-block()->request->outPut($param, $data)；
+block()->message->outPut($param, $data)；
 ~~~
 
 ### 请求 `'request'` 
@@ -94,13 +94,13 @@ block()->request->outPut($param, $data)；
 #### - **curlPost** Curl 的 Post 请求
 
 ~~~ php
-block()->request->curlPost($url, $param)；
+block()->request->curlPost($url, $param, $header, $cookieFile)；
 ~~~
 
 #### - **curlGet** Curl 的 Get 请求
 
 ~~~ php
-block()->request->curlGet($url, $param)；
+block()->request->curlGet($url, $param, $cookieFile)；
 ~~~
 
 #### - **server** $_SERVER 信息优化
@@ -119,6 +119,14 @@ block()->request->ip()；
 
 ~~~ php
 block()->request->iagentOs($str)；
+~~~
+
+### 请求 `'tools'` 
+
+#### - **getImagesUrl** 获取文本中所以图片
+
+~~~ php
+block()->tools->getImagesUrl($content, $order)；
 ~~~
 
 ## 标准 / 规范

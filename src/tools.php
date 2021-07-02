@@ -2,10 +2,10 @@
 /*
  * @Author: 故乡情
  * @Date: 2021-06-17 09:51:39
- * @LastEditTime: 2021-06-17 11:39:20
+ * @LastEditTime: 2021-07-02 19:14:38
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
- * @FilePath: /block/src/Tools.php
+ * @FilePath: \block\src\tools.php
  * Copyright © 2020 EPNZ.com
  * 请保留版权信息
  */
@@ -22,12 +22,9 @@ class tools
     ];
 
     /**
-     * Notes:获取文本中所以图片
-     * @auther: xxf
-     * Date: 2019/7/25
-     * Time: 13:55
-     * @param $content
-     * @param int $order 第几张，0全部
+     * @description: 获取文本中所以图片
+     * @param string    $content html 文章内容
+     * @param int       $order 第几张，0全部
      * @return array
      */
     function getImagesUrl($content, $order = 0)
