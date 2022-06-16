@@ -37,6 +37,12 @@ block()->character->randChar($length)；
 block()->character->byteFormat($size, $dec)；
 ~~~
 
+#### - **uuid** 生成一个唯一ID
+
+~~~ php
+block()->character->uuid($trim)；
+~~~
+
 ### 日期 / 时间 `'date'`
 
 #### - **timeComparison** 一个时间戳与当前时间的比较

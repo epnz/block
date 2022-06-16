@@ -2,7 +2,7 @@
 /*
  * @Author: 故乡情
  * @Date: 2021-06-17 09:51:39
- * @LastEditTime: 2021-07-02 19:14:38
+ * @LastEditTime: 2022-06-16 18:57:04
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: \block\src\tools.php
@@ -22,7 +22,7 @@ class tools
     ];
 
     /**
-     * @description: 获取文本中所以图片
+     * @description: 获取文本中所有图片
      * @param string    $content html 文章内容
      * @param int       $order 第几张，0全部
      * @return array

@@ -2,10 +2,10 @@
 /* 
  * @Author: 故乡情
  * @Date: 2020-12-28 18:57:11
- * @LastEditTime: 2021-06-17 13:07:22
+ * @LastEditTime: 2022-06-16 18:53:37
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
- * @FilePath: /block/src/block.php
+ * @FilePath: \block\src\block.php
  * @Copyright © 2020 EPNZ.com
  * 请保留版权信息
  */
@@ -17,7 +17,7 @@ class block
     /**
      * Version
      */
-    const VERSION = '0.1.1';
+    const VERSION = '0.1.4';
 
     /**
      * 打造一个全局能用的基础数组
