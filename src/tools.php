@@ -2,7 +2,7 @@
 /*
  * @Author: 故乡情
  * @Date: 2021-06-17 09:51:39
- * @LastEditTime: 2022-06-16 18:57:04
+ * @LastEditTime: 2024-08-25 15:32:13
  * @LastEditors: 故乡情
  * @Description: EPower Network Zealot Project Block
  * @FilePath: \block\src\tools.php
@@ -23,11 +23,12 @@ class tools
 
     /**
      * @description: 获取文本中所有图片
-     * @param string    $content html 文章内容
-     * @param int       $order 第几张，0全部
-     * @return array
+     * @param   string    $content html 文章内容
+     * @param   int       $order 第几张，0全部
+     * @return  array
+     * @access  public
      */
-    function getImagesUrl($content, $order = 0)
+    public function getImagesUrl($content, $order = 0)
     {
         $pattern = "/<img.*?src=[\'|\"](.*?(?:[\.gif|\.jpg|\.png|\.jpeg|\.?]))[\'|\"].*?[\/]?>/";
         preg_match_all($pattern, $content, $match);

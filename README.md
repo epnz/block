@@ -95,7 +95,15 @@ block()->json->arrayToJson($arr)；
 block()->message->outPut($param, $data)；
 ~~~
 
-### 请求 `'request'` 
+### 数字 `'number'`
+
+#### - **padWithZeros** 数字补零
+
+~~~ php
+block()->message->padWithZeros($param, $data)；
+~~~
+
+### 请求 `'request'`
 
 #### - **curlPost** Curl 的 Post 请求
 
@@ -127,9 +135,9 @@ block()->request->ip()；
 block()->request->iagentOs($str)；
 ~~~
 
-### 请求 `'tools'` 
+### 请求 `'tools'`
 
-#### - **getImagesUrl** 获取文本中所以图片
+#### - **getImagesUrl** 获取文本中所有图片
 
 ~~~ php
 block()->tools->getImagesUrl($content, $order)；
@@ -145,4 +153,4 @@ block()->tools->getImagesUrl($content, $order)；
  * 你可以免费使用源码，或用于二次开发，但请保留版权信息
  * 更多细节参阅 [LICENSE](LICENSE)
 
-Copyright &copy; 2018-2021 [EPNZ.com](http://www.epnz.com) EPower Network Zealot
+Copyright &copy; 2018-2024 [EPNZ.com](http://www.epnz.com) EPower Network Zealot
